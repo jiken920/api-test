@@ -1,6 +1,8 @@
-package com.vdms.api;
+package com.vdms.api.services;
 
 import com.vdms.api.model.Product;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,25 +25,31 @@ public class ProductService {
         productsByTag = new ConcurrentHashMap<>();
     }
 
+    @CachePut(value = "products")
     public Product addProduct(Product product) {
 
-        // Associate the product with its code
+        // Map the product by its unique code
         products.put(product.getCode(), product);
 
-        // Associate the product with its tags
-        for(String tag : product.getTags()) {
-            if(productsByTag.containsKey(tag)) {
-                List<Product> existingProducts = productsByTag.get(tag);
-                existingProducts.add(product);
-            } else {
-                List<Product> newProducts = new ArrayList<>();
-                newProducts.add(product);
-                productsByTag.put(tag, newProducts);
+        // Map the product with its tags, if we have any
+        if(product.getTags() != null && !product.getTags().isEmpty()) {
+            for (String tag : product.getTags()) {
+                // If the tag already exists, append the new product to the list of tagged products. Otherwise, create
+                // a new tag-product pair.
+                if (productsByTag.containsKey(tag)) {
+                    List<Product> existingProducts = productsByTag.get(tag);
+                    existingProducts.add(product);
+                } else {
+                    List<Product> newProducts = new ArrayList<>();
+                    newProducts.add(product);
+                    productsByTag.put(tag, newProducts);
+                }
             }
         }
         return product;
     }
 
+    @Cacheable(value = "products")
     public Collection<Product> getAllProducts() {
         return products.values();
     }

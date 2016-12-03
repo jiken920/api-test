@@ -3,7 +3,6 @@ package com.vdms.api.model;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
-import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -16,6 +15,7 @@ import java.util.UUID;
  */
 public class Product {
 
+    @NotNull
     private String code;
 
     @NotNull
@@ -25,24 +25,27 @@ public class Product {
     private double price;
 
     @Size(min = 1)
-    @Valid
     private Set<String> tags;
+
     private Map<String, Object> additionalProperties;
 
     /**
-     * Default constructor, which exists purely for serialization purposes. This should not be called directly.
+     * Default constructor
+     *
      */
-    public Product() {}
+    public Product() {
+        this.code = UUID.randomUUID().toString();
+    }
 
     /**
-     * Constructs a Product instance
+     * Constructs a Product instance with the given parameters
      *
      * @param tags A set of tags associated with the product
      * @param price The product's price
      * @param name The product's name
      */
     public Product(String name, double price, Set<String> tags, Map<String, Object> additionalProperties) {
-        this.code = UUID.randomUUID().toString();
+        this();
         this.name = name;
         this.price = price;
         this.tags = tags;
