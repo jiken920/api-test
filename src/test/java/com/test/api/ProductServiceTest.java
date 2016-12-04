@@ -1,4 +1,4 @@
-package com.vdms.api;
+package com.test.api;
 
 import org.junit.Test;
 

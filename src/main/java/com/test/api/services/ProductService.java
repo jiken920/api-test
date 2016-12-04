@@ -1,6 +1,6 @@
-package com.vdms.api.services;
+package com.test.api.services;
 
-import com.vdms.api.model.Product;
+import com.test.api.model.Product;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;

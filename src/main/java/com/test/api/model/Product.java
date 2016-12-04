@@ -1,4 +1,4 @@
-package com.vdms.api.model;
+package com.test.api.model;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
