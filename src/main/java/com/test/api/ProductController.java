@@ -2,7 +2,6 @@ package com.test.api;
 
 import com.test.api.model.Product;
 import com.test.api.services.ProductService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -10,9 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.Collection;
 
-/**
- * Created by Kenji on 12/1/2016.
- */
 @RestController
 @RequestMapping("/api")
 public class ProductController {
@@ -64,13 +60,6 @@ public class ProductController {
             throw new ProductNotFoundException(NO_PRODUCTS_WITH_TAG_MSG + tag);
         } else {
             return products;
-        }
-    }
-
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    private class ProductNotFoundException extends RuntimeException {
-        public ProductNotFoundException(String message) {
-            super(message);
         }
     }
 }
