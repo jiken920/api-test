@@ -25,7 +25,6 @@ public class ProductServiceImpl implements ProductService {
         productsByTag = new ConcurrentHashMap<>();
     }
 
-    @CachePut(value = "products")
     public Product addProduct(Product product) {
 
         // Map the product by its unique code
@@ -49,7 +48,6 @@ public class ProductServiceImpl implements ProductService {
         return product;
     }
 
-    @Cacheable(value = "products")
     public Collection<Product> getAllProducts() {
         return products.values();
     }
