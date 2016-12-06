@@ -12,4 +12,4 @@ To run this application, you can either:
 
 Once running, you can test the API using your own HTTP client, or you
 can use the built-in Swagger UI at the following URL:
-http://localhost:8080/swagger-ui.html
+<http://localhost:8080/swagger-ui.html>
