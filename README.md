@@ -5,10 +5,10 @@ add and retrieve products from an in-memory collection.
 
 To run this application, you can either:
 
-1. Clone the repository and call **mvn spring-boot:run** from the root
-folder, or
-2. Download and run the fat JAR:
+1. Head to the Releases page and download and run the JAR:
 **java -jar products-api-kr-1.0.jar**
+2. Or, if you prefer, you can download the source and run 
+**mvn spring-boot:run** from the project's root directory
 
 Once running, you can test the API using your own HTTP client, or you
 can use the built-in Swagger UI at the following URL:
